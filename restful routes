@@ -1,0 +1,37 @@
+				method	action								method	action
+C	root	get 		'/'
+	new		GET 		'/questions/new'			GET "/questions/:q_id/answers/new"
+	create	POST	'/questions'					POST "/questions/:q_id/answers"
+
+R index	GET 		'/questions'					GET "/questions/:q_id/answers"
+	show	GET 		'/questions/:id'			GET "/questions/:q_id/answers/:a_id"
+
+U	edit GET 			'/questions/:id/edit'	GET "/questions/:q_id/answers/:a_id/edit"
+	update	PUT 	'/questions/:id'			PUT "/questions/:q_id/answers/:a_id"
+					PATCH
+
+D	delete	DELETE '/questions/:id'			DELETE "/questions/:q_id/answers/:a_id"
+																				question = Question.find params[:q_id]
+																				answer = question.answeres.find(a_id:params(:a_id)
+																				answer.delete
+																			DELETE "/questions/:q_id/answers"
+																				question = Question.find params[:q_id]
+																				question.answers.delete_all
+
+
+
+	"value = " << session[:value].inspect
+
+	get '/:value' do
+  session['value'] = params['value']
+end
+
+get '/welcome' do
+  name = session[:name]
+  "Hello, #{name}!"
+end
+
+post '/:name' do
+  session[:name] = params[:name]
+  redirect to '/welcome'
+end

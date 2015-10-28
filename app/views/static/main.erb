@@ -14,7 +14,6 @@
 
 </head>
 
-<div>
 <body>
 
 	<header id="header" data-template="stage-header" class=" header-transparent">
@@ -23,38 +22,21 @@
 				<img id="brand_nash" src="/img/brand_nash.gif">
 			</div>	
 			<div> 
-					<h1 id="header-logo" class="bitly" >
+					<h1 id="header-logo" class="quora" >
 						<a href="/" rel="no follow"> 
 							<span> Quora </span>
 						</a>
 					</h1>
+					<h1 id='username_head'> <%= @user.username %> </h1>
+					<h5 id='logout_head'> 
+						<a href="/logout">
+							<span> Logout </span>
+						</a>
+					</h5>	
 			</div>
 			<br>
-			<h1> Welcome to the next bigger app </h1>
+			<h1> Main </h1><br>
+			<h2> All Questions </h2>
 			</div>
 		</div>
 	</header>
-
-<div>
-<h1 style="position: absolute; left: 180px; top: 200px;">New User Signup</h1> <h1 style="position: absolute; right: 180px; top: 200px;">User Login</h1>
-</div>
-
-			<div style="position: absolute; left: 180px; top: 300px;">
-				<form action='/signup' method="post">
-						<input type='text' name='user[email]' placeholder="Email" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
-						<input type='text' name='user[password]' placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off"></br>
-						<button type="submit" class="btn btn-primary" id="signup"> Signup 
-						</button>							
-				</form>
-			</div>
-
-			<div style="position: absolute; right: 180px; top: 300px;">
-				<form action='/login' method="post">
-						<input type='text' name='user[email]' placeholder="Email" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
-						<input type='text' name='user[password]' placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off"></br>
-						<button type="submit" class="btn btn-primary" id="login"> Login 
-						</button>							
-				</form>
-			</div>
-</body>
-</div>
