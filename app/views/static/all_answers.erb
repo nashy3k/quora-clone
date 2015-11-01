@@ -32,44 +32,57 @@
 				</h3>
 				<h3 style="position: absolute; right: 50px; top: 60px;" data-toggle="tooltip" title="show all answers of user"><a href="/user/<%= current_user.id %>/answers/"> All my answers </a>
 				</h3>
-				<h5 id='logout_head' style="position: absolute; right: 100px; top: 100px;"> 
-					<a href="/logout">
+				<h5 id='logout_head' style="position: absolute; right: 100px; top: 100px;"> 					<a href="/logout">
 						<span> Logout </span>
 					</a>
-				</h5>
+				</h5>	
 			</div>
 			<br>
-			<div style="position: absolute; left: 550px; top: 130px;">
-				<form action='/questions' method="post">
-					<input type='text' name='question[title]' placeholder="Ask Quora" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
-					<button type="submit" class="btn btn-primary" id="askquestion" style="position: absolute; left: 165px; top: 1px;"> Submit 
-					</button>							
-				</form>
-			</div>
 		</div>
 	</header>
 
 	<div id="datatable" style="position: absolute; left: 550px; top: 200px;">
-	<p> All Questions List </p>
-		<table class="table table-hover">
-			<thead id="thead">
-	      <tr>
-	        <th>Who asked</th>
-	        <th>Question</th>
-	        <th>when</th>
-	      </tr>
-	    </thead>
-			<tbody>
-				<%  @questions.each do |t|  %>
-					<tr>
-						<td data-toggle="tooltip" title="show all questions of username"><a href="/user/<%= t.user.id %>/questions/"> <%= t.user.username %> </a> </td>
-						<td data-toggle="tooltip" title="question.title"><a href="/questions/<%= t.id %>"> <%= t.title %> </a> </td>
-						<td data-toggle="tooltip" title="question.created_at"><%= t.created_at %> </td>
-	    		</tr>
-				<% end %>
-	    </tbody>
-	  </table>
+	<p> <%= @question.title %> by <%= @question.user.username %> </p>
+	<p> <%= @question.description %> when <%= @question.created_at %> </p>
+
+		<div style="position: absolute; left: 10px; top: 50px;">
+			<table class="table table-hover" >
+				<thead id="thead">
+		      <tr>
+		        <th>Answer</th>
+		        <th>Description</th>
+		        <th>who</th>
+		        <th>when</th>
+		      </tr>
+		    </thead>
+				<tbody>
+					<%  @answers.find_each do |t|  %>
+						<tr>
+							<td> <a href="/questions/<%= @question.id %>/answers/<%= t.id %>/"> <%= t.title %> </a></td>
+							<td> <%= t.description %> </td>
+							<td> <%= t.user.username %> </td>
+							<td> <%= t.created_at %> </td>
+		    		</tr>
+					<% end %>
+		    </tbody>
+		  </table>
+		</div>
+		<div id="questionform" style="position: relative; left: 250px; bottom: 55px;">
+			<form action='/questions/<%= @question.id %>/answers' method="post">
+				<input type='text' name='answers[title]' placeholder=" ... " autocomplete="off" autocorrect="off" autocapitalize="off"><br>
+				<button type="submit" class="btn btn-primary" id="answerquestion" style="position: relative; left: 170px; bottom: 30px;"> Answer 
+				</button>							
+			</form>
+			<form action="/questions/<%= @question.id %>/answers" style="position: relative; left: 170px; bottom: 30px;" method="post">
+			  <div style="margin:0;padding:0">
+			    <input name="_method" type="hidden" value="delete" />
+			    <span> <button type="submit" class="btn btn-info btn-sm">Delete all answers</button> </span>
+			  </div>
+			 </form> 
+		</div>
+
 	</div>
+</div>		
 
 </body>	
 

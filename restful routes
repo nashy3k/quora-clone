@@ -1,5 +1,5 @@
 				method	action								method	action
-C	root	get 		'/'
+C	root	GET 		'/'
 	new		GET 		'/questions/new'			GET "/questions/:q_id/answers/new"
 	create	POST	'/questions'					POST "/questions/:q_id/answers"
 

@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 	validates :email, uniqueness: true, :format => { :with =>  /\w*[@]{1,}\w{1,}[.]\w{2,}/, :message => "@ required" } 
 	# validates :username, uniqueness: true 
 
+	has_many :questions
+	has_many :answers
+
 	def self.authenticate(email,password)
 		# if email and password correspond to a valid user, return that user
 		# otherwise, return nil	
